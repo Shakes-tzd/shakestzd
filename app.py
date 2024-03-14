@@ -24,6 +24,15 @@ st.markdown("""
         }
     </style>
     """, unsafe_allow_html=True)
+
+hide = """
+<style>
+#stExpander {
+    border: 0 !important;}
+</style>
+"""
+
+st.markdown(hide, unsafe_allow_html=True)
 # Define a function to get the options from the 'Options' worksheet
 def get_options(sheet_name):
     worksheet = conn.read(worksheet=sheet_name, usecols=list(range(5)), ttl=5)
@@ -41,7 +50,7 @@ options_q4 = get_options('options')['Question 4'].dropna().tolist()
 options_q5 = get_options('options')['Question 5'].dropna().tolist()
 
 # Start a form for the procrastination journal entries
-with st.form("procrastination_journal_form"):
+with st.form("procrastination_journal_form",border=False):
     # st.write("Please answer the following questions:")
 
     # Create input fields for each question and option
@@ -51,8 +60,10 @@ with st.form("procrastination_journal_form"):
         emotion = [st.checkbox(opt) for opt in options_q2]#st.multiselect("**What emotions and thoughts are contributing to my procrastination?**", options_q2,options_q2[-1])
     with st.expander("**What activity am I choosing to do instead?**"):
         activity = [st.checkbox(opt) for opt in options_q3] #st.multiselect("**What activity am I choosing to do instead?**",options_q3,options_q3)
-    consequences = st.multiselect("**What are the immediate and long-term consequences of procrastinating on this task?**",options_q4,options_q4[2])
-    step =st.multiselect("**What is one small step I can take right now towards completing the task?**",options_q5,options_q5[2])
+    with st.expander("**What are the immediate and long-term consequences of procrastinating on this task?**"):
+        consequences = [st.checkbox(opt) for opt in options_q4]#st.multiselect("**What are the immediate and long-term consequences of procrastinating on this task?**",options_q4,options_q4[2])
+    with st.expander("**What is one small step I can take right now towards completing the task?**"):
+        step =[st.checkbox(opt) for opt in options_q5]#st.multiselect("**What is one small step I can take right now towards completing the task?**",options_q5,options_q5[2])
 
     # Submit button for the form
     submitted = st.form_submit_button("Submit Journal Entry")
