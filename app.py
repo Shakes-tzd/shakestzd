@@ -9,7 +9,7 @@ from streamlit_extras.stoggle import stoggle
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 # Fetch existing vendors data
-questions = conn.read(spreadsheet="Procrastination Journal",worksheet='questions', usecols=list(range(7)), ttl=5)
+questions = conn.read(worksheet='questions', usecols=list(range(7)), ttl=5)
 questions = questions.dropna(how="all")
 
 
@@ -94,6 +94,6 @@ if submitted:
     updated_df = pd.concat([questions, answer_data], ignore_index=True)
 
     # Update Google Sheets with the new vendor data
-    conn.update(spreadsheet="Procrastination Journal",worksheet='questions', data=updated_df)
+    conn.update(worksheet='questions', data=updated_df)
 
     st.success("Vendor details successfully submitted!")
