@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 from datetime import datetime
-from streamlit_extras.stoggle import stoggle
+# from streamlit_extras.stoggle import stoggle
 
 # Set up the connection to Google Sheets
 # Establishing a Google Sheets connection
