@@ -7,9 +7,9 @@ from datetime import datetime
 # Set up the connection to Google Sheets
 # Establishing a Google Sheets connection
 conn = st.connection("gsheets", type=GSheetsConnection)
-
+url="https://docs.google.com/spreadsheets/d/1bXjiWIRAUfvEWsHSzYYbpOKs9KUuEwq0MKy_nQ8oKPI/"
 # Fetch existing vendors data
-questions = conn.read(worksheet='questions', usecols=list(range(7)), ttl=5)
+questions = conn.read(spreadsheet=url,worksheet='questions', usecols=list(range(7)), ttl=5)
 questions = questions.dropna(how="all")
 
 
@@ -94,6 +94,6 @@ if submitted:
     updated_df = pd.concat([questions, answer_data], ignore_index=True)
 
     # Update Google Sheets with the new vendor data
-    conn.update(worksheet='questions', data=updated_df)
+    conn.update(spreadsheet=url,worksheet='questions', data=updated_df)
 
     st.success("Vendor details successfully submitted!")
