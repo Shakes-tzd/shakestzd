@@ -21,18 +21,20 @@ st.markdown("""
         .stMultiSelect [data-baseweb=select] span{
             max-width: 250px;
             font-size: 0.6rem;
-        }
+        },
+        #stExpander {
+    border: 0 !important;}
     </style>
     """, unsafe_allow_html=True)
 
-hide = """
-<style>
-#stExpander {
-    border: 0 !important;}
-</style>
-"""
+# hide = """
+# <style>
+# #stExpander {
+#     border: 0 !important;}
+# </style>
+# """
 
-st.markdown(hide, unsafe_allow_html=True)
+# st.markdown(hide, unsafe_allow_html=True)
 # Define a function to get the options from the 'Options' worksheet
 def get_options(sheet_name):
     worksheet = conn.read(worksheet=sheet_name, usecols=list(range(5)), ttl=5)
