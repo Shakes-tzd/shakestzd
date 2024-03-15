@@ -2,6 +2,6 @@ altair
 numpy
 pandas
 pydeck
-streamlit
+streamlit>=1.28
 st-gsheets-connection
 streamlit-extras
