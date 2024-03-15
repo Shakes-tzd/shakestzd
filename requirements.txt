@@ -3,5 +3,5 @@ numpy
 pandas
 pydeck
 streamlit
-git+https://github.com/streamlit/gsheets-connection
+st-gsheets-connection
 streamlit-extras
