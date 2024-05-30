@@ -5,3 +5,5 @@ pydeck
 streamlit>=1.28
 st-gsheets-connection
 streamlit-extras
+streamlit-elements==0.1.*
+streamlit-calendar
